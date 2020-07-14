@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-export const DEFAULT_DATE_FORMATTING = {
-  dateFormat: 'Y-m-d',
-  timeFormat: 'g:i a',
-  gmtOffset: 0,
-  timezone: 'UTC',
-};
+/**
+ * External dependencies
+ */
 
-export { isToday } from './isToday';
-export { isYesterday } from './isYesterday';
-export { getTimeFromNow } from './getTimeFromNow';
-export { getTimeSensitiveDisplayDate } from './getTimeSensitiveDisplayDate';
+// Returns string counting time pasted between display date and current time
+
+export function getTimeFromNow(displayDate, dateFormatting) {
+  return displayDate.fromNow();
+}

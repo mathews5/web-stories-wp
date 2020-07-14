@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-export const DEFAULT_DATE_FORMATTING = {
-  dateFormat: 'Y-m-d',
-  timeFormat: 'g:i a',
-  gmtOffset: 0,
-  timezone: 'UTC',
-};
+/**
+ * External dependencies
+ */
+import moment from 'moment';
 
-export { isToday } from './isToday';
-export { isYesterday } from './isYesterday';
-export { getTimeFromNow } from './getTimeFromNow';
-export { getTimeSensitiveDisplayDate } from './getTimeSensitiveDisplayDate';
+// Returns boolean, true if displayDate matches today's date
+export function isToday(displayDate) {
+  const today = moment().startOf('day');
+  return displayDate.isSame(today, 'd');
+}
