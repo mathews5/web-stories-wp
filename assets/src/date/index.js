@@ -26,7 +26,12 @@ import { format } from '@wordpress/date';
 import moment from 'moment';
 
 // TODO separate these for clarity, import to index
-const DEFAULT_DATE_FORMAT = 'Y-m-d';
+export const DEFAULT_DATE_FORMATTING = {
+  dateFormat: 'Y-m-d',
+  timeFormat: 'g:i a',
+  gmtOffset: 0,
+  timezone: 'UTC',
+};
 
 export function isToday(displayDate) {
   const today = moment().startOf('day');
@@ -38,9 +43,9 @@ export function isYesterday(displayDate) {
   return displayDate.isSame(yesterday, 'd');
 }
 
-export default function getFormattedDisplayDate(
+export function getFormattedDisplayDate(
   date,
-  dateFormat = DEFAULT_DATE_FORMAT
+  dateFormatting = DEFAULT_DATE_FORMATTING
 ) {
   if (!date) {
     return '';
@@ -51,5 +56,5 @@ export default function getFormattedDisplayDate(
   } else if (isYesterday(displayDate)) {
     return __('yesterday', 'web-stories');
   }
-  return format(dateFormat, displayDate);
+  return format(dateFormatting.dateFormat, displayDate);
 }
