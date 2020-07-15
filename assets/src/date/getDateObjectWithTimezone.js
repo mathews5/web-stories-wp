@@ -33,8 +33,8 @@ export function getDateObjectWithTimezone(dateFormatting = {}) {
   }
 
   if (gmtOffset) {
-    return date.utcOffset(gmtOffset);
+    return date.utcOffset(gmtOffset).format();
   }
 
-  return date;
+  return date.format();
 }
