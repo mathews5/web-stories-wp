@@ -17,11 +17,12 @@
 export const DEFAULT_DATE_FORMATTING = {
   dateFormat: 'Y-m-d',
   timeFormat: 'g:i a',
-  gmtOffset: 0,
-  timezone: 'UTC',
+  gmtOffset: null,
+  timezone: '',
 };
 
 export { isToday } from './isToday';
 export { isYesterday } from './isYesterday';
 export { getTimeFromNow } from './getTimeFromNow';
 export { getTimeSensitiveDisplayDate } from './getTimeSensitiveDisplayDate';
+export { getDateObjectWithTimezone } from './getDateObjectWithTimezone';
