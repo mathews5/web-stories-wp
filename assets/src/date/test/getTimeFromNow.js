@@ -26,8 +26,13 @@ import MockDate from 'mockdate';
 import { DEFAULT_DATE_FORMATTING, getTimeFromNow } from '../';
 
 describe('date/getTimeFromNow', () => {
+  const MOCK_UTC_DATE = moment.utc('2020-07-12 11:30');
+
+  beforeAll(() => {
+    jest.spyOn(Date, 'now').mockImplementation(() => MOCK_UTC_DATE);
+  });
   beforeEach(() => {
-    MockDate.set(moment('2013-02-08 09:30'));
+    MockDate.set(MOCK_UTC_DATE);
   });
 
   it('should return 2 minutes ago using moment', () => {
@@ -47,6 +52,15 @@ describe('date/getTimeFromNow', () => {
   it('should return 2 hours ago using moment', () => {
     const dateString = moment().subtract(2, 'hours');
     const formattedDate = getTimeFromNow(dateString, DEFAULT_DATE_FORMATTING);
+
+    expect(formattedDate).toBe('2 hours ago');
+  });
+
+  it('should still return 2 hours ago using moment when timezone is set', () => {
+    const dateString = moment().subtract(2, 'hours');
+    const formattedDate = getTimeFromNow(dateString, {
+      timezone: 'America/New_York',
+    });
 
     expect(formattedDate).toBe('2 hours ago');
   });

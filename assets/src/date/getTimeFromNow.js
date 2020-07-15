@@ -15,11 +15,12 @@
  */
 
 /**
- * External dependencies
+ * Internal dependencies
  */
+import { getDateObjectWithTimezone } from './getDateObjectWithTimezone';
 
 // Returns string counting time pasted between display date and current time
 
 export function getTimeFromNow(displayDate, dateFormatting) {
-  return displayDate.fromNow();
+  return displayDate.from(getDateObjectWithTimezone(dateFormatting));
 }
