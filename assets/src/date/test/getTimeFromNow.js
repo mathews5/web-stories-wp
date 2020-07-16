@@ -61,4 +61,11 @@ describe('date/getTimeFromNow', () => {
 
     expect(formattedDate).toBe('2 hours ago');
   });
+
+  it('should return in 19 years', () => {
+    const dateString = moment('2039-07-12 11:30');
+    const formattedDate = getTimeFromNow(dateString, DEFAULT_DATE_FORMATTING);
+
+    expect(formattedDate).toBe('in 19 years');
+  });
 });

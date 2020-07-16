@@ -19,8 +19,15 @@
  */
 import moment from 'moment-timezone';
 
-// Returns boolean, true if displayDate matches today's date
-export function isToday(displayDate) {
+/**
+ * @summary            Checks if date is today's date
+ * @param {Date} date  Uses moment to find if date passed in is the same as "today".
+ * If date is not an instance of moment when passed in it will create a moment from it.
+ * @return {boolean}   If date matches today it will be true
+ */
+export function isToday(date) {
+  const displayDate = moment.isMoment(date) ? date : moment.parseZone(date);
   const today = moment().startOf('day');
+
   return displayDate.isSame(today, 'd');
 }

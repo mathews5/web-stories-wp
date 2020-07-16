@@ -13,14 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/**
+ * External dependencies
+ */
+import moment from 'moment-timezone';
 
 /**
  * Internal dependencies
  */
 import { getDateObjectWithTimezone } from './getDateObjectWithTimezone';
 
-// Returns string counting time pasted between display date and current time
+/**
+ * @summary                        Get the time passed from or time until a date to the time now in any timezone
+ * @param {Date} date              Uses moment to find time passed since/until.
+ * If date is not an instance of moment when passed in it will create a moment from it.
+ * @param {Object} dateFormatting  Object responsible for relevant date formatting.
+ * Should contain dateFormat, timezone, gmtOffset, and timeFormat - all strings.
+ * @return {string}                Displayable relative date string
+ */
+export function getTimeFromNow(date, dateFormatting) {
+  const displayDate = moment.isMoment(date) ? date : moment.parseZone(date);
 
-export function getTimeFromNow(displayDate, dateFormatting) {
   return displayDate.from(getDateObjectWithTimezone(dateFormatting));
 }
