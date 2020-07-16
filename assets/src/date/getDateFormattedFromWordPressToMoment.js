@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-export const DEFAULT_DATE_FORMATTING = {
-  dateFormat: 'Y-m-d',
-  timeFormat: 'g:i a',
-  gmtOffset: null,
-  timezone: '',
-};
+// Returns string counting time pasted between display date and current time
 
-export { isToday } from './isToday';
-export { isYesterday } from './isYesterday';
-export { getDateFormattedFromWordPressToMoment } from './getDateFormattedFromWordPressToMoment';
-export { getDateObjectWithTimezone } from './getDateObjectWithTimezone';
-export { getTimeFromNow } from './getTimeFromNow';
-export { getTimeSensitiveDisplayDate } from './getTimeSensitiveDisplayDate';
+export function getDateFormattedFromWordPressToMoment(
+  date,
+  wpFormat = 'Y-m-d'
+) {
+  const momentFormatWordPressKey = {
+    'F j, Y': 'MMM D, YYYY', //May 2, 2020
+    'Y-m-d': 'YYYY-MM-DD', // 2020-05-02
+    'd-m-Y': 'MM-DD-YYYY', // 05-02-2020
+    'm/d/Y': 'MM/DD/YYYY', // 05/02/2020
+    'd/m/Y': 'DD/MM/YYYY', // 02/05/2020
+  };
+
+  const dateFormat = momentFormatWordPressKey[wpFormat];
+  return dateFormat && date.format(dateFormat);
+}

@@ -28,9 +28,6 @@ import { DEFAULT_DATE_FORMATTING, getTimeFromNow } from '../';
 describe('date/getTimeFromNow', () => {
   const MOCK_UTC_DATE = moment.utc('2020-07-12 11:30');
 
-  beforeAll(() => {
-    jest.spyOn(Date, 'now').mockImplementation(() => MOCK_UTC_DATE);
-  });
   beforeEach(() => {
     MockDate.set(MOCK_UTC_DATE);
   });

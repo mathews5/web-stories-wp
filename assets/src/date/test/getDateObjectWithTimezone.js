@@ -28,9 +28,6 @@ import { getDateObjectWithTimezone } from '../';
 describe('date/getDateObjectWithTimezone July', () => {
   const MOCK_UTC_DATE = moment.utc('2020-07-12 11:30');
 
-  beforeAll(() => {
-    jest.spyOn(Date, 'now').mockImplementation(() => MOCK_UTC_DATE);
-  });
   beforeEach(() => {
     MockDate.set(MOCK_UTC_DATE);
   });
