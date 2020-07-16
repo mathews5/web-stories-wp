@@ -17,7 +17,7 @@
 /**
  * External dependencies
  */
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 // Returns boolean, true if displayDate matches today's date
 export function isToday(displayDate) {
